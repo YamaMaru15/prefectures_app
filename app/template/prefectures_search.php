@@ -12,12 +12,12 @@
 
         <div id="search_area">
             <div id="sub_title">検索条件</div>
-            <form action="search.php" method="GET">
+            <form action="prefectures_search.php" method="GET">
                 <div id="form_area">
                     <div class="clearfix">
                         <div class="input_area">
                             <span class="input_label">都道府県</span>
-                            <select name="region">
+                            <select name="prefecture">
                                 <?php foreach(PREFECTURE_LISTS as $prefecture_value) { ?>
                                     <option value="<?= $prefecture_value; ?>"
                                     <?= $prefecture === $prefecture_value ? "selected" : ""; ?>
@@ -84,7 +84,7 @@
                         <th>地方</th>
                         <th>滞在レベル</th>
                         <th>訪問日</th>
-                        <th>訪問目的</th>
+                        <th>訪問理由</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -119,12 +119,12 @@
     </div>
 </div>
 
-<form action="input.php" name="edit_form"  method="POST">
+<form action="prefectures_input.php" name="edit_form"  method="POST">
     <input type="hidden" name="prefecture" value="" />
     <input type="hidden" name="edit" value="1" />
 </form>
 
-<form action="search.php" name="delete_form"  method="POST">
+<form action="prefectures_search.php" name="delete_form"  method="POST">
     <input type="hidden" name="prefecture" value="" />
     <input type="hidden" name="delete" value="1" />
 </form>

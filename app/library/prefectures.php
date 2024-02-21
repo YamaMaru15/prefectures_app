@@ -4,15 +4,15 @@ declare(strict_types=1);
 class Prefectures
 {
     /**
-     * 記録番号をキーに都道府県記録が存在するか判定する
+     * 都道府県名をキーに都道府県記録が存在するか判定する
      *
-     * @param string $id 記録番号
+     * @param string $prefectures 都道府県名
      * @return bool true:存在する／false:存在しない
      */
-    public static function isExists(string $id): bool
+    public static function isExists(string $prefectures): bool
     {
-        $sql = "SELECT COUNT(*) AS count FROM visit_records WHERE id = :id";
-        $param = ["id" => $id];
+        $sql = "SELECT COUNT(*) AS count FROM visit_records WHERE prefectures = :prefectures";
+        $param = ["prefectures" => $prefectures];
         $count = DataBase::fetch($sql, $param);
         if ($count["count"] >= 1) {
             return true;
@@ -22,28 +22,28 @@ class Prefectures
     }
 
     /**
-     * 社員番号をキーに社員情報を取得する
+     * 都道府県名をキーに記録情報を取得する
      *
-     * @param string $id 社員番号
+     * @param string $prefectures 都道府県名
      * @return array SQL実行結果配列
      */
-    public static function getById(string $id): array
+    public static function getByPrefectures(string $prefectures): array
     {
-        $sql = "SELECT * FROM users WHERE id = :id";
-        $param = ["id" => $id];
+        $sql = "SELECT * FROM visit_records WHERE prefectures = :prefectures";
+        $param = ["prefectures" => $prefectures];
         return DataBase::fetch($sql, $param);
     }
 
     /**
-     * 記録番号をキーに都道府県記録を削除する
+     * 都道府県名をキーに記録を削除する
      *
-     * @param string $id 記録番号
+     * @param string $prefectures 都道府県名
      * @return bool SQL実行結果
      */
-    public static function deleteById(string $id): bool
+    public static function deleteByPrefectures(string $prefectures): bool
     {
-        $sql = "DELETE FROM visit_records` WHERE id = :id";
-        $param = ["id" => $id];
+        $sql = "DELETE FROM visit_records` WHERE prefectures = :prefectures";
+        $param = ["prefectures" => $prefectures];
         return DataBase::execute($sql, $param);
     }
 
@@ -87,126 +87,77 @@ class Prefectures
     }
 
     /**
-     * 社員情報を登録する
+     * 記録情報を登録する
      *
-     * @param string $id 社員番号
-     * @param string $name 氏名
-     * @param string $nameKana 氏名カナ
-     * @param string $birthday 誕生日
-     * @param string $gender 性別
-     * @param string $organization 部署
-     * @param string $post 役職
-     * @param string $startDate 入社年月日
-     * @param string $tel 電話番号
-     * @param string $mailAddress メールアドレス
+     * @param string $prefecture 都道府県
+     * @param string $region 地方
+     * @param string $stay_level 滞在レベル
+     * @param string $visit_date 訪問日
+     * @param string $purpose 訪問理由
      * @return bool SQL実行結果
      */
     public static function insert(
-        string $id,
-        string $name,
-        string $nameKana,
-        string $birthday,
-        string $gender,
-        string $organization,
-        string $post,
-        string $startDate,
-        string $tel,
-        string $mailAddress
+        string $prefecture,
+        string $region,
+        string $stay_level,
+        string $visit_date,
+        string $purpose
     ): bool {
-        $sql  = "INSERT INTO users ( ";
-        $sql .= "  id, ";
-        $sql .= "  name, ";
-        $sql .= "  name_kana, ";
-        $sql .= "  birthday, ";
-        $sql .= "  gender, ";
-        $sql .= "  organization, ";
-        $sql .= "  post, ";
-        $sql .= "  start_date, ";
-        $sql .= "  tel, ";
-        $sql .= "  mail_address, ";
-        $sql .= "  created, ";
-        $sql .= "  updated ";
+        $sql  = "INSERT INTO visit_records ( ";
+        $sql .= "  prefecture, ";
+        $sql .= "  region, ";
+        $sql .= "  stay_level, ";
+        $sql .= "  visit_date, ";
+        $sql .= "  purpose, ";
         $sql .= ") VALUES (";
-        $sql .= "  :id, ";
-        $sql .= "  :name, ";
-        $sql .= "  :name_kana, ";
-        $sql .= "  :birthday, ";
-        $sql .= "  :gender, ";
-        $sql .= "  :organization, ";
-        $sql .= "  :post, ";
-        $sql .= "  :start_date, ";
-        $sql .= "  :tel, ";
-        $sql .= "  :mail_address, ";
-        $sql .= "  NOW(), "; //作成日時
-        $sql .= "  NOW() ";  //更新日時
+        $sql .= "  :prefecture, ";
+        $sql .= "  :region, ";
+        $sql .= "  :stay_level, ";
+        $sql .= "  :visit_date, ";
+        $sql .= "  :purpose, ";
         $sql .= ")";
 
         $param = [
-            "id" => $id,
-            "name" => $name,
-            "name_kana" => $nameKana,
-            "birthday" => $birthday,
-            "gender" => $gender,
-            "organization" => $organization,
-            "post" => $post,
-            "start_date" => $startDate,
-            "tel" => $tel,
-            "mail_address" => $mailAddress,
+            "prefecture" => $prefecture,
+            "namregione" => $region,
+            "stay_level" => $stay_level,
+            "visit_date" => $visit_date,
+            "purpose" => $purpose
         ];
         return DataBase::execute($sql, $param);
     }
 
     /**
-     * 社員情報を更新する
+     * 記録情報を更新する
      *
-     * @param string $id 社員番号
-     * @param string $name 氏名
-     * @param string $nameKana 氏名カナ
-     * @param string $birthday 誕生日
-     * @param string $gender 性別
-     * @param string $organization 部署
-     * @param string $post 役職
-     * @param string $startDate 入社年月日
-     * @param string $tel 電話番号
-     * @param string $mailAddress メールアドレス
+     * @param string $prefecture 都道府県
+     * @param string $region 地方
+     * @param string $stay_level 滞在レベル
+     * @param string $visit_date 訪問日
+     * @param string $purpose 訪問理由
      * @return bool SQL実行結果
      */
     public static function update(
-        string $id,
-        string $name,
-        string $nameKana,
-        string $birthday,
-        string $gender,
-        string $organization,
-        string $post,
-        string $startDate,
-        string $tel,
-        string $mailAddress
+        string $prefecture,
+        string $region,
+        string $stay_level,
+        string $visit_date,
+        string $purpose
     ): bool {
-        $sql  = "UPDATE users ";
-        $sql .= "SET name = :name, ";
-        $sql .= "  name_kana = :name_kana, ";
-        $sql .= "  birthday = :birthday, ";
-        $sql .= "  gender = :gender, ";
-        $sql .= "  organization = :organization, ";
-        $sql .= "  post = :post, ";
-        $sql .= "  start_date = :start_date, ";
-        $sql .= "  tel = :tel, ";
-        $sql .= "  mail_address = :mail_address, ";
-        $sql .= "  updated = NOW() "; //更新日時
-        $sql .= "WHERE id = :id ";
+        $sql  = "UPDATE visit_records ";
+        $sql .= "SET prefecture = :prefecture, ";
+        $sql .= "  region = :region, ";
+        $sql .= "  stay_level = :stay_level, ";
+        $sql .= "  visit_date = :visit_date, ";
+        $sql .= "  purpose = :purpose, ";
+        $sql .= "WHERE prefecture = :prefecture ";
 
         $param = [
-            "id" => $id,
-            "name" => $name,
-            "name_kana" => $nameKana,
-            "birthday" => $birthday,
-            "gender" => $gender,
-            "organization" => $organization,
-            "post" => $post,
-            "start_date" => $startDate,
-            "tel" => $tel,
-            "mail_address" => $mailAddress,
+            "prefecture" => $prefecture,
+            "namregione" => $region,
+            "stay_level" => $stay_level,
+            "visit_date" => $visit_date,
+            "purpose" => $purpose
         ];
         return DataBase::execute($sql, $param);
     }

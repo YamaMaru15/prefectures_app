@@ -42,20 +42,6 @@ function validateMaxLength(string $str, int $length): bool
 }
 
 /**
- * 指定文字数チェック
- *
- * @param string $str
- * @param int $minLength 最小文字数
- * @param int $maxLength 最大文字数
- * @return bool true:指定文字数に収まる／false:指定文字数に収まらない
- */
-function validateBetweenLength(string $str, int $minLength, int $maxLength): bool
-{
-    $length = mb_strlen($str, 'UTF-8');
-    return ($length >= $minLength && $length <= $maxLength);
-}
-
-/**
  * 日付(yyyy-mm-dd)チェック
  *
  * @param string $str
@@ -121,3 +107,21 @@ function validateStayLevel(string $str): bool
     }
     return true;
 }
+
+
+/**
+ * ワード除外チェック
+ *
+ * @param string $str
+ * @return bool true:除外すべき文字が含まれていない／false:除外すべき文字が含まれている
+ */
+function exceptionWords(string $str): bool
+{
+    if (mb_strpos($str, "--全ての記録を見る--") === true) {
+        return false;
+    }
+    return true;
+}
+
+
+

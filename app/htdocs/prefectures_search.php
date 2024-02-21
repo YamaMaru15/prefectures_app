@@ -33,7 +33,7 @@ if (isPost()) {
             DataBase::beginTransaction();
 
             //都道府県記録の削除
-            Prefectures::deleteById($deleteId);
+            Prefectures::deleteByPrefectures($deletePrefecture);
 
             //コミット
             DataBase::commit();
