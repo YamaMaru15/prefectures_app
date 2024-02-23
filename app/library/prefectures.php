@@ -46,7 +46,6 @@ class Prefectures
         $param = ["prefectures" => $prefectures];
         return DataBase::execute($sql, $param);
     }
-
     /**
      * 検索条件にヒットした記録件数を取得する
      *
@@ -183,19 +182,19 @@ class Prefectures
         // 都道府県、地方、滞在レベルに「--すべての記録を見る--」が含まれる　かつ
         // 訪問日が空白の場合は全件検索
         // 都道府県に「--すべての記録を見る--」入力されているか
-        if ($prefecture !== '--すべての記録を見る--') {
+        if ($prefecture !== '全ての記録を見る') {
             // 検索条件に都道府県を追加
             $whereSql .= 'AND prefecture = :prefecture ';
             $param['prefecture'] = $prefecture;
         }
         // 地方に「--すべての記録を見る--」が入力されているか
-        if ($region !== '--すべての記録を見る--') {
+        if ($region !== '全ての記録を見る') {
             // 検索条件に地方を追加
             $whereSql .= 'AND region = :region ';
             $param['region'] = $region;
         }
         // 滞在に「--すべての記録を見る--」レベルが入力されているか
-        if ($stay_level !== '--すべての記録を見る--') {
+        if ($stay_level !== '全ての記録を見る') {
             // 検索条件に滞在レベルを追加
             $whereSql .= 'AND stay_level = :stay_level ';
             $param['stay_level'] = $stay_level;

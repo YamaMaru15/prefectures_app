@@ -6,6 +6,8 @@ require_once(dirname(__DIR__) . "/library/common.php");
 
 $errorMessage = '';
 $successMessage = "";
+$count = "";
+$data = "";
 
 //POST送信かつ削除ボタン押下
 //同じPOSTっていう文字でも、大文字で来る場合と小文字で来る場合がある。
@@ -46,27 +48,38 @@ if (isPost()) {
     }
 }
 
-$prefecture = $_GET['prefecture'] ?? '';
-$region = $_GET['region'] ?? '';
-$stay_level = $_GET['stay_level'] ?? '';
+$prefecture = $_GET['prefecture'] ?? '全ての記録を見る';
+$region = $_GET['region'] ?? '全ての記録を見る';
+$stay_level = $_GET['stay_level'] ?? '全ての記録を見る';
 $visit_date = $_GET['visit_date'] ?? '';
 
 // 検索条件の入力チェック
 // 都道府県の入力チェック
-if (!validatePrefecture($prefecture)) {
-    $errorMessage .= '都道府県が不正です。<br>';
+if (!allSearchCheck($prefecture)) {
+    if (!validatePrefecture($prefecture)) {
+        $errorMessage .= '都道府県が不正です。<br>';
+    }
 }
+
 // 地方の入力チェック
-if (!validateRegion($region)) {
-    $errorMessage .= '地方が不正です。<br>';
+if (!allSearchCheck($region)) {
+    if (!validateRegion($region)) {
+        $errorMessage .= '地方が不正です。<br>';
+    }
 }
+
 // 滞在レベルの入力チェック
-if (!validateStayLevel($stay_level)) {
-    $errorMessage .= '滞在レベルが不正です。<br>';
+if (!allSearchCheck($stay_level)) {
+    if (!validateStayLevel($stay_level)) {
+        $errorMessage .= '滞在レベルが不正です。<br>';
+    }
 }
+
 // 訪問日の入力チェック
-if (!validateDate($visit_date)) {
-    $errorMessage .= '訪問日が不正です。<br>';
+if ($visit_date != "") {
+    if (!validateDate($visit_date)) {
+        $errorMessage .= '訪問日が不正です。<br>';
+    }
 }
 
 //入力チェックOK?
@@ -78,8 +91,6 @@ if ($errorMessage === '') {
     // 都道府県記録取得SQLの実行
     $data = Prefectures::searchData($prefecture, $region, $stay_level, $visit_date);
 // var_dump($count);
-} else {
-    echo $errorMessage;
 }
 
 //headerphpのtitleで受け取り

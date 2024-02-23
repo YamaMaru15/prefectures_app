@@ -10,7 +10,7 @@ define('DB_PASSWORD', 'password');
 
 
 define("STAY_LEVEL_LISTS", [
-    "--全ての記録を見る--",
+    //"--全ての記録を見る--",
     "未訪問",
     "尋ねた・通過した",
     "旅行（日帰り）",
@@ -19,7 +19,7 @@ define("STAY_LEVEL_LISTS", [
 ]);
 
 define("PREFECTURE_LISTS", [
-    "--全ての記録を見る--",
+    //"--全ての記録を見る--",
     "北海道地方",
     "　北海道",
     "東北地方",
@@ -78,7 +78,7 @@ define("PREFECTURE_LISTS", [
 ]);
 
 define("REGION_LISTS", [
-    "--全ての記録を見る--",
+    //"--全ての記録を見る--",
     "北海道地方",
     "東北地方",
     "関東地方",

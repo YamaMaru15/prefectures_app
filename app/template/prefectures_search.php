@@ -18,6 +18,7 @@
                         <div class="input_area">
                             <span class="input_label">都道府県</span>
                             <select name="prefecture">
+                                <option value="全ての記録を見る">全ての記録を見る</option>
                                 <?php foreach(PREFECTURE_LISTS as $prefecture_value) { ?>
                                     <option value="<?= $prefecture_value; ?>"
                                     <?= $prefecture === $prefecture_value ? "selected" : ""; ?>
@@ -29,6 +30,7 @@
                         <div class="input_area">
                             <span class="input_label">地方</span>
                             <select name="region">
+                            <option value="全ての記録を見る">全ての記録を見る</option>
                                 <?php foreach(REGION_LISTS as $region_value) { ?>
                                     <option value="<?= $region_value; ?>"
                                     <?= $region === $region_value ? "selected" : ""; ?>>
@@ -39,6 +41,7 @@
                         <div class="input_area">
                             <span class="input_label">滞在レベル</span>
                             <select name="stay_level">
+                            <option value="全ての記録を見る">全ての記録を見る</option>
                                 <?php foreach(STAY_LEVEL_LISTS as $level_value) { ?>
                                     <option value="<?= $level_value; ?>"
                                     <?= $stay_level === $level_value ? "selected" : ""; ?>>
