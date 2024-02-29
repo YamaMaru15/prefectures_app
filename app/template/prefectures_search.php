@@ -18,9 +18,9 @@
                         <div class="input_area">
                             <span class="input_label">都道府県</span>
                             <select name="prefecture">
-                                <option value="全ての記録を見る">全ての記録を見る</option>
+                                <option value="<?= Utils::h('全ての記録を見る'); ?>">全ての記録を見る</option>
                                 <?php foreach(PREFECTURE_LISTS as $prefecture_value) { ?>
-                                    <option value="<?= $prefecture_value; ?>"
+                                    <option value="<?= Utils::h($prefecture_value); ?>"
                                     <?= $prefecture === $prefecture_value ? "selected" : ""; ?>
                                     <?= mb_strpos($prefecture_value, "地方") !== false ? "disabled" : ""; ?>>
                                     <?= $prefecture_value; ?></option>
@@ -30,9 +30,9 @@
                         <div class="input_area">
                             <span class="input_label">地方</span>
                             <select name="region">
-                            <option value="全ての記録を見る">全ての記録を見る</option>
+                            <option value="<?= Utils::h('全ての記録を見る'); ?>">全ての記録を見る</option>
                                 <?php foreach(REGION_LISTS as $region_value) { ?>
-                                    <option value="<?= $region_value; ?>"
+                                    <option value="<?= Utils::h($region_value); ?>"
                                     <?= $region === $region_value ? "selected" : ""; ?>>
                                     <?= $region_value; ?></option>
                                 <?php } ?>
@@ -41,16 +41,16 @@
                         <div class="input_area">
                             <span class="input_label">滞在レベル</span>
                             <select name="stay_level">
-                            <option value="全ての記録を見る">全ての記録を見る</option>
+                            <option value="<?= Utils::h('全ての記録を見る'); ?>">全ての記録を見る</option>
                                 <?php foreach(STAY_LEVEL_LISTS as $level_value) { ?>
-                                    <option value="<?= $level_value; ?>"
+                                    <option value="<?= Utils::h($level_value); ?>"
                                     <?= $stay_level === $level_value ? "selected" : ""; ?>>
                                     <?= $level_value; ?></option>
                                 <?php } ?>
                             </select>
                         </div>
                         <div class="input_area"><span class="input_label">訪問日</span>
-                            <input type="date" name="visit_date" value="<?php $visit_date ?>" >
+                            <input type="date" name="visit_date" value="<?= Utils::h($visit_date); ?>" >
                         </div>
                     </div>
                     <div class="clearfix">
@@ -99,8 +99,8 @@
                             <tr>
                                 <?php //記録情報の表示 ?>
                                 <td><?= Utils::h($row["prefecture"]); ?></td>
-                                <td><?= Utils::h($row["stay_level"]); ?></td>
                                 <td><?= Utils::h($row["region"]); ?></td>
+                                <td><?= Utils::h($row["stay_level"]); ?></td>
                                 <td><?= Utils::h($row["visit_date"]); ?></td>
                                 <td><?= Utils::h($row["purpose"]); ?></td>
                                 <td class="button_area">
@@ -109,7 +109,7 @@
                                         編集
                                     </button>
                                     <button class="delete_button"
-                                        onclick="deleteRecord('<?= Utils::h($row["prefecture"]); ?>;');">
+                                        onclick="deleteRecord('<?= Utils::h($row["prefecture"]); ?>');">
                                         削除
                                     </button>
                                 </td>
@@ -134,7 +134,7 @@
 
 <script>
 function editRecord(prefecture) {
-    //編集が押されたら都道府県をhidden項目[id]に記録番号をセットしてsubmit
+    //編集が押されたら都道府県をhidden項目[prefecture]に記録番号をセットしてsubmit
     document.edit_form.prefecture.value = prefecture; 
     document.edit_form.submit();
 }

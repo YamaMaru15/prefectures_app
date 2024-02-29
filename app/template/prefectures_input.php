@@ -31,21 +31,18 @@
               <td>
                 <?php if ($isEdit === false) { ?>
                   <select name="prefecture">
+                    <option value="<?= Utils::h(''); ?>">選択してください</option>
                     <?php foreach(PREFECTURE_LISTS as $prefecture_value) { ?>
-                      <option value="<?= $prefecture_value; ?>"
+                      <option value="<?= Utils::h($prefecture_value); ?>"
                       <?= $prefecture === $prefecture_value ? "selected" : ""; ?>
-                      <?= mb_strpos($prefecture_value, "地方") !== false ? "disabled" : ""; ?>
-                      <?= mb_strpos($prefecture_value, "--全ての記録を見る--") !== false ? "disabled" : ""; ?>>
+                      <?= mb_strpos($prefecture_value, "地方") !== false ? "disabled" : ""; ?>>
                       <?= $prefecture_value; ?></option>
                     <?php } ?>
                   </select>
                 <?php } else { ?>
                   <select name="prefecture">
-                    <option value="<?= Utils::h($prefecture_value); ?>" disabled 
-                    <?= $prefecture === $prefecture_value ? "selected" : ""; ?> >
+                      <option value="<?= Utils::h($prefecture); ?>"><?= $prefecture; ?></option>
                   </select>
-                  <input type="hidden" name="prefecture" 
-                    value="<?= Utils::h($prefecture_value); ?>" />
                 <?php } ?>
               </td>
             </tr>
@@ -53,8 +50,9 @@
               <td>滞在レベル</td>
               <td>
                 <select name="stay_level">
+                  <option value="<?= Utils::h(''); ?>">選択してください</option>
                   <?php foreach(STAY_LEVEL_LISTS as $level_value) { ?>
-                    <option value="<?= $level_value; ?>"
+                    <option value="<?= Utils::h($level_value); ?>"
                     <?= $stay_level === $level_value ? "selected" : ""; ?>>
                     <?= $level_value; ?></option>
                   <?php } ?>
@@ -70,7 +68,7 @@
             <tr>
               <td>訪問理由</td>
               <td>
-                <textarea name="purpose" value="<?= Utils::h($purpose); ?>" rows="5" cols="33" ></textarea>
+                <textarea name="purpose" value="<?= Utils::h($purpose); ?>" rows="10" cols="50" ><?= $purpose ?></textarea>
               </td>
             </tr>
           </tbody>

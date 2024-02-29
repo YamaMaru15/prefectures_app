@@ -73,7 +73,7 @@ function validatePrefecture(string $str): bool
     if (!in_array($str, PREFECTURE_LISTS)) {
         return false;
         // PREFECTURE_LISTSには地方も含まれるため、地方が含まれていないか確認
-    } else if (!in_array($str, REGION_LISTS)) {
+    } else if (in_array($str, REGION_LISTS)) {
         return false;
     }
     return true;
@@ -103,21 +103,6 @@ function validateRegion(string $str): bool
 function validateStayLevel(string $str): bool
 {
     if (!in_array($str, STAY_LEVEL_LISTS)) {
-        return false;
-    }
-    return true;
-}
-
-
-/**
- * ワード除外チェック
- *
- * @param string $str
- * @return bool true:除外すべき文字が含まれていない／false:除外すべき文字が含まれている
- */
-function exceptionWords(string $str): bool
-{
-    if (mb_strpos($str, "全ての記録を見る") === true) {
         return false;
     }
     return true;

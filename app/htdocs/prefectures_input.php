@@ -34,8 +34,6 @@ if (isPost()) {
             $errorMessage .= 'エラーが発生しました。もう一度やり直してください。<br>';
         } else if (!validatePrefecture($prefecture)) { //正しい都道府県か
             $errorMessage .= 'エラーが発生しました。もう一度やり直してください。<br>';
-        } else if (!exceptionWords($prefecture)) { //全体検索のワードが含まれていないか
-            $errorMessage .= 'エラーが発生しました。もう一度やり直してください。<br>';
         } else {
             //存在する社員番号か 
             if (!Prefectures::isExists($prefecture)) {
@@ -66,11 +64,9 @@ if (isPost()) {
     // 登録ボタン押下
     if ($isSave === true) {
         //POSTされた都道府県名の入力チェック
-        if (!validateRequired($prefectures)) { //空白でないか
+        if (!validateRequired($prefecture)) { //空白でないか
             $errorMessage .= '都道府県名を選択してください。<br>';
         } else if (!validatePrefecture($prefecture)) { //正しい都道府県か
-            $errorMessage .= '都道府県名が不正です。<br>';
-        } else if (!exceptionWords($prefecture)) { //除外ワードが含まれていないか
             $errorMessage .= '都道府県名が不正です。<br>';
         } else {
             //(新規登録時)存在しない都道府県か
@@ -88,17 +84,15 @@ if (isPost()) {
         
         // POSTされた都道府県をもとに対応する地方を登録
         if (!regionJudgment($prefecture) === '') {
-            $region = regionJudgment($prefecture);
-        } else {
             $errorMessage .= '地方が不正です。<br>';
+        } else {
+            $region = regionJudgment($prefecture);
         }
         
         // POSTされた滞在レベルの入力チェック
         if (!validateRequired($stay_level)) { //空白でないか
             $errorMessage .= '滞在レベルを選択してください。<br>';
         } else if (!validateStayLevel($stay_level)) { //正しい滞在レベルか
-            $errorMessage .= '滞在レベルが不正です。<br>';
-        } else if (!exceptionWords($stay_level)) { //除外ワードが含まれていないか
             $errorMessage .= '滞在レベルが不正です。<br>';
         }
 
@@ -142,8 +136,7 @@ if (isPost()) {
                 $visit_date,
                 $purpose,
             );
-            }
-            
+        }    
         //コミット
         Database::commit();
 

@@ -9,10 +9,10 @@ class Prefectures
      * @param string $prefectures 都道府県名
      * @return bool true:存在する／false:存在しない
      */
-    public static function isExists(string $prefectures): bool
+    public static function isExists(string $prefecture): bool
     {
-        $sql = "SELECT COUNT(*) AS count FROM visit_records WHERE prefectures = :prefectures";
-        $param = ["prefectures" => $prefectures];
+        $sql = "SELECT COUNT(*) AS count FROM visit_records WHERE prefecture = :prefecture";
+        $param = ["prefecture" => $prefecture];
         $count = DataBase::fetch($sql, $param);
         if ($count["count"] >= 1) {
             return true;
@@ -27,10 +27,10 @@ class Prefectures
      * @param string $prefectures 都道府県名
      * @return array SQL実行結果配列
      */
-    public static function getByPrefectures(string $prefectures): array
+    public static function getByPrefectures(string $prefecture): array
     {
-        $sql = "SELECT * FROM visit_records WHERE prefectures = :prefectures";
-        $param = ["prefectures" => $prefectures];
+        $sql = "SELECT * FROM visit_records WHERE prefecture = :prefecture";
+        $param = ["prefecture" => $prefecture]; 
         return DataBase::fetch($sql, $param);
     }
 
@@ -40,10 +40,10 @@ class Prefectures
      * @param string $prefectures 都道府県名
      * @return bool SQL実行結果
      */
-    public static function deleteByPrefectures(string $prefectures): bool
+    public static function deleteByPrefectures(string $prefecture): bool
     {
-        $sql = "DELETE FROM visit_records` WHERE prefectures = :prefectures";
-        $param = ["prefectures" => $prefectures];
+        $sql = "DELETE FROM visit_records WHERE prefecture = :prefecture";
+        $param = ["prefecture" => $prefecture];
         return DataBase::execute($sql, $param);
     }
     /**
@@ -81,7 +81,7 @@ class Prefectures
     {
         list($whereSql, $param) = 
             self::getSearchWhereSqlAndParam($prefecture, $region, $stay_level, $visit_date);
-        $sql = "SELECT * FROM visit_records WHERE 1 = 1 {$whereSql} ORDER BY visit_date";
+        $sql = "SELECT * FROM visit_records WHERE 1 = 1 {$whereSql} ORDER BY visit_date DESC";
         return DataBase::fetchAll($sql, $param);
     }
 
@@ -107,21 +107,21 @@ class Prefectures
         $sql .= "  region, ";
         $sql .= "  stay_level, ";
         $sql .= "  visit_date, ";
-        $sql .= "  purpose, ";
+        $sql .= "  purpose ";
         $sql .= ") VALUES (";
         $sql .= "  :prefecture, ";
         $sql .= "  :region, ";
         $sql .= "  :stay_level, ";
         $sql .= "  :visit_date, ";
-        $sql .= "  :purpose, ";
+        $sql .= "  :purpose ";
         $sql .= ")";
 
         $param = [
             "prefecture" => $prefecture,
-            "namregione" => $region,
+            "region" => $region,
             "stay_level" => $stay_level,
             "visit_date" => $visit_date,
-            "purpose" => $purpose
+            "purpose" => $purpose,
         ];
         return DataBase::execute($sql, $param);
     }
@@ -144,19 +144,18 @@ class Prefectures
         string $purpose
     ): bool {
         $sql  = "UPDATE visit_records ";
-        $sql .= "SET prefecture = :prefecture, ";
-        $sql .= "  region = :region, ";
-        $sql .= "  stay_level = :stay_level, ";
-        $sql .= "  visit_date = :visit_date, ";
-        $sql .= "  purpose = :purpose, ";
-        $sql .= "WHERE prefecture = :prefecture ";
+        $sql .= "SET region = :region, ";
+        $sql .= " stay_level = :stay_level, ";
+        $sql .= " visit_date = :visit_date, ";
+        $sql .= " purpose = :purpose ";
+        $sql .= "WHERE prefecture = :prefecture";
 
         $param = [
-            "prefecture" => $prefecture,
-            "namregione" => $region,
+            "region" => $region,
             "stay_level" => $stay_level,
             "visit_date" => $visit_date,
-            "purpose" => $purpose
+            "purpose" => $purpose,
+            "prefecture" => $prefecture,
         ];
         return DataBase::execute($sql, $param);
     }

@@ -114,6 +114,7 @@ class DataBase {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+
     /**
      * SQLを実行する（delete,insert,update）
      *
