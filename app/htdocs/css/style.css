@@ -42,8 +42,8 @@ body {
 
 #header h1 {
   margin: 0;
-  background: #333;
-  color: #fff;
+  /* background: #333; */
+  color: #333;
   padding: 10px;
 }
 #menu {
@@ -64,11 +64,11 @@ body {
 }
 #main {
   float: right;
-  margin: 20px 10px 0 10px;
+  margin: 20px 10px 20px 10px;
   width: 85%;
 }
 #title {
-  background: #8ea9db;
+  background: #769164;
   font-weight: bold;
   padding: 10px;
   margin: 0 0 10px 0;
@@ -79,7 +79,7 @@ body {
 }
 #sub_title {
   border: 1px solid #333;
-  background: #8ea9db;
+  background: #769164;
   padding: 5px;
   margin: 0;
 }
@@ -95,7 +95,7 @@ body {
 .input_area {
   float: left;
   margin: 10px;
-  width: 30%;
+  width: 20%;
 }
 .input_area_right {
   float: right;
@@ -142,6 +142,9 @@ body {
   border-right: 1px solid #aaa;
   border-bottom: 1px solid #333;
 }
+#search_result table td:nth-child(5) {
+  max-width: 500px;
+}
 #search_result table td:last-child {
   border-right: none;
 }
@@ -161,7 +164,7 @@ body {
   border-bottom: 1px solid #ccc;
 }
 #input_area table tr td:first-child {
-  background: #8ea9db;
+  background: #769164;
   font-weight: bold;
   padding: 7px;
   width: 20%;
