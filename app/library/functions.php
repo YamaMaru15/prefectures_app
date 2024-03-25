@@ -60,5 +60,4 @@ function regionJudgment(string $str): string
 
 }
 
-
 ?>

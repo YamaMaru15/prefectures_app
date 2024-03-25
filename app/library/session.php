@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 class Session
 {
-
     /**
      * sessionに値を設定する
      *
@@ -23,14 +22,14 @@ class Session
      * @param string $key キー
      * @return mixed 指定KEYの値
      */
-    public static function get($key): mixed
-    {
-        $value = null;
-        if (isset($_SESSION[$key])) {
-            $value = $_SESSION[$key];
-        }
-        return $value;
-    }
+    // public static function get($key): mixed
+    // {
+    //     $value = null;
+    //     if (isset($_SESSION[$key])) {
+    //         $value = $_SESSION[$key];
+    //     }
+    //     return $value;
+    // }
 
     /**
      * sessionを開始する
@@ -52,7 +51,6 @@ class Session
     public static function destroy(): void
     {
         $_SESSION = [];
-        // サーバーの /tmp/に保持されているセッションファイルの削除
         session_destroy();
     }
 
@@ -64,7 +62,6 @@ class Session
      */
     public static function regenerate(): void
     {
-        // セッションIDの発行
         session_regenerate_id(true);
     }
 }

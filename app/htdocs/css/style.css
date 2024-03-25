@@ -9,40 +9,14 @@ body {
   display: block;
   clear: both;
 }
-.fl {
-  float: left;
-}
-.fr {
-  float: right;
-}
-.font14 {
-  font-size: 14px;
-}
-.mb5 {
-  margin-bottom: 5px;
-}
-.mb10 {
-  margin-bottom: 10px;
-}
-.mb20 {
-  margin-bottom: 20px;
-}
-.mb30 {
-  margin-bottom: 30px;
-}
-.mb40 {
-  margin-bottom: 40px;
-}
 .text_red {
   color: #f00;
 }
 .text_center {
   text-align: center;
 }
-
 #header h1 {
   margin: 0;
-  /* background: #333; */
   color: #333;
   padding: 10px;
 }
@@ -113,6 +87,9 @@ body {
 }
 #paging {
   text-align: center;
+}
+strong {
+  color: #9a493f;
 }
 .page {
   border: 1px solid #00f;
@@ -187,7 +164,6 @@ body {
 #input_area input[type="text"] {
   width: 80%;
 }
-
 #login_main {
   margin: 0 auto;
   width: 60%;

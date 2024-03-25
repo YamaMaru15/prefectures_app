@@ -2,18 +2,13 @@
 <?php require_once(TEMPLATE_DIR . "header.php"); ?>
 
 
-<?php //var_dump($prefecture); ?>
 <div class="clearfix">
   <?php require_once(TEMPLATE_DIR . "menu.php"); ?>
-
   <div id="main">
     <h3 id="title">都道府県　記録登録画面</h3>
-
     <div id="input_area">
       <form action="prefectures_input.php" method="POST">
-        <p><strong>記録情報を入力してください。全て必須です。</strong></p>
-
-        <?php //メッセージ表示 ?>
+        <p><strong>記録情報を入力してください。全て必須入力です。</strong></p>
         <?php if ($errorMessage !== '') { ?>
           <p class="error_message"><?= $errorMessage; ?></p>
         <?php } ?>
@@ -21,13 +16,10 @@
           <p class="success_message"><?= $successMessage; ?></p>
         <?php } ?>
 
-        <?php //各入力項目表示 ?>
         <table>
           <tbody>
             <tr>
               <td>都道府県</td>
-              <?php // (新規登録時)都道府県名入力可 ?>
-              <?php // (更新時)都道府県名入力不可 ?>
               <td>
                 <?php if ($isEdit === false) { ?>
                   <select name="prefecture">

@@ -1,13 +1,10 @@
 <?php
 declare(strict_types=1);
 
-// データベースにアクセスするための準備、定数定義
 define('DSN', 'mysql:dbname=prefectures_app;host=localhost');
 define('DB_USER', 'root');
 define('DB_PASSWORD', 'password');
-//define('SITE_URL', 'http://localhost/prefectures_app/public/VisitRecord/index.php');
-// define('SITE_URL', 'http://' . $_SERVER['HTTP_HOST']);
-
+//define('SITE_URL', 'http://' . $_SERVER['HTTP_HOST']);
 
 define("STAY_LEVEL_LISTS", [
     "未訪問",

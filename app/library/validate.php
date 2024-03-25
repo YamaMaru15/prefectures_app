@@ -16,20 +16,6 @@ function validateRequired(string $str): bool
 }
 
 /**
- * 数値チェック
- *
- * @param string $str
- * @return bool true:数値／false:数値以外
- */
-function validateNumeric(string $str): bool
-{
-    if (!preg_match('/\A[0-9]+\z/', $str)) {
-        return false;
-    }
-    return true;
-}
-
-/**
  * 最大文字数チェック
  *
  * @param string $str
@@ -61,7 +47,6 @@ function validateDate(string $str): bool
     return true;
 }
 
-
 /**
  * 都道府県チェック
  *
@@ -72,13 +57,11 @@ function validatePrefecture(string $str): bool
 {
     if (!in_array($str, PREFECTURE_LISTS)) {
         return false;
-        // PREFECTURE_LISTSには地方も含まれるため、地方が含まれていないか確認
     } else if (in_array($str, REGION_LISTS)) {
         return false;
     }
     return true;
 }
-
 
 /**
  * 地方チェック

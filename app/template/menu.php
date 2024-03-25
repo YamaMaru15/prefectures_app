@@ -2,7 +2,6 @@
 
 <div id="menu">
         <h3>メニュー</h3>
-        <!-- mb_strposでsearchがあるかを検索。あったらsearch.php -->
         <?php if (mb_strpos($_SERVER["REQUEST_URI"], "prefectures_search.php") !== false) { ?>
             <div class="sub_menu">記録検索</div>
             <div class="sub_menu"><a href="prefectures_input.php">記録登録</a></div>

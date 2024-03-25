@@ -1,25 +1,11 @@
 <?php
 declare(strict_types=1);
 
-// namespace PrefecturesApp;
-
 class DataBase {
-    /**
-     * コンストラクタ
-     */
-    private function __construct()
-    {
-    }
-
-    // static変数がセットされていなかった場合→DBコネクション作成→static変数にいれる
-    // static変数がセットされていた場合→何もせずにDBのコネクションを返す
-
-    // SingletonパターンでDBコネクションを作成する。
     private static PDO $pdo;
 
     public static function getInstance(): PDO 
     {
-        // pdoでデータベースにアクセス
         try{
             if(!isset(self::$pdo)) {
                 self::$pdo = new PDO(
@@ -27,9 +13,7 @@ class DataBase {
                 DB_USER, 
                 DB_PASSWORD,
                 [
-                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, //エラーを取得する
-                    //PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ, //オブジェクト形式で結果を取得
-                    //PDO::ATTR_EMULATE_PREPARES => false, //SQLに合わせた型で取得(自動型変換されない)
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 ]
                 );
             }   
@@ -39,9 +23,7 @@ class DataBase {
             exit;
         }
     }
-
-
-
+    
     /**
      * トランザクション開始
      *
@@ -128,4 +110,5 @@ class DataBase {
         return $stmt->execute($param);
     }
 }
+
 ?>

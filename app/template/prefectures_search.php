@@ -1,9 +1,6 @@
 <?php declare(strict_types=1); ?>
 <?php require_once(TEMPLATE_DIR . "header.php"); ?>
 
-
-
-
 <div class="clearfix">
 <?php require_once(TEMPLATE_DIR . "menu.php"); ?>
 
@@ -60,21 +57,14 @@
             </form>
         </div>
 
-
-    <?php //メッセージ表示 ?>
-    <?php //例)都道府県が登録されていません。 ?>
     <?php if ($errorMessage !== '') { ?>
         <p class="error_message"><?= $errorMessage; ?></p>
     <?php } ?>
 
-    <?php //例)削除完了しました。 ?>
     <?php if ($successMessage !== '') { ?>
         <p class="success_message"><?= $successMessage; ?></p>
     <?php } ?>
 
-
-
-        <?php //件数表示 ?>
         <div id="page_area">
             <div id="page_count"><?= Utils::h($count); ?> 件の記録があります。</div>
         </div>
@@ -92,12 +82,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php //件数が1件以上 ?>
                     <?php if ($count >= 1) { ?>
-                        <?php //訪問記録取得結果を1行ずつ読込、終端まで繰り返し ?>
                         <?php foreach ($data as $row) {?>
                             <tr>
-                                <?php //記録情報の表示 ?>
+                                 <!-- //記録情報の表示 -->
                                 <td><?= Utils::h($row["prefecture"]); ?></td>
                                 <td><?= Utils::h($row["region"]); ?></td>
                                 <td><?= Utils::h($row["stay_level"]); ?></td>

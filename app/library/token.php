@@ -1,14 +1,9 @@
 <?php
-
-namespace PrefecturesApp;
-
 class Token {
-
 
 /**
  * CSRF対策 token作成
  */
-
     public static function create() {
         if(!isset($_SESSION['token'])) {
             $_SESSION['token'] = bin2hex(random_bytes(32));
@@ -26,5 +21,4 @@ class Token {
                 exit('Invalid post request');  
         }
     }
-
 }
