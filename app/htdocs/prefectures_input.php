@@ -3,6 +3,10 @@ declare(strict_types=1);
 
 require_once(dirname(__DIR__) . "/library/common.php");
 
+if (!Auth::isLoggedIn()) {
+    redirect("login.php");
+}
+
 $prefecture = '';
 $region = '';
 $stay_level = '';

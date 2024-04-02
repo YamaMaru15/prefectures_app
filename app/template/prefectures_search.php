@@ -11,7 +11,7 @@
             <div id="sub_title">検索条件</div>
             <form action="prefectures_search.php" method="GET">
                 <div id="form_area">
-                    <div class="clearfix">
+                    <div class="flex">
                         <div class="input_area">
                             <span class="input_label">都道府県</span>
                             <select name="prefecture">
@@ -50,9 +50,7 @@
                             <input type="date" name="visit_date" value="<?= Utils::h($visit_date); ?>" >
                         </div>
                     </div>
-                    <div class="clearfix">
-                        <div class="input_area_right"><input type="submit" id="search_button" value="検索"></div>
-                    </div>
+                    <div class="input_area_right"><input type="submit" id="search_button" value="検索"></div>
                 </div>
             </form>
         </div>

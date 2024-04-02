@@ -3,11 +3,14 @@ declare(strict_types=1);
 
 require_once(dirname(__DIR__) . "/library/common.php");
 
+if (!Auth::isLoggedIn()) {
+    redirect("login.php");
+}
+
 $errorMessage = '';
 $successMessage = "";
 $count = "";
 $data = "";
-
 
 if (isPost()) {
     $isDelete = (isset($_POST['delete']) && $_POST['delete'] === '1') ? true : false;

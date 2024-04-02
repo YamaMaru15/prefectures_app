@@ -22,14 +22,14 @@ class Session
      * @param string $key キー
      * @return mixed 指定KEYの値
      */
-    // public static function get($key): mixed
-    // {
-    //     $value = null;
-    //     if (isset($_SESSION[$key])) {
-    //         $value = $_SESSION[$key];
-    //     }
-    //     return $value;
-    // }
+    public static function get($key): mixed
+    {
+        $value = null;
+        if (isset($_SESSION[$key])) {
+            $value = $_SESSION[$key];
+        }
+        return $value;
+    }
 
     /**
      * sessionを開始する

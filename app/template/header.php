@@ -12,10 +12,18 @@
 
 <div id="header">
     <h1>
-        <div class = "clearfix">
+        <div class="clearfix">
             <div class="f1">
                 都道府県記録アプリ
             </div>
+            <?php if (isset($_SESSION["name"])) { ?>
+                <div class="fr">
+                    <span class="font14">
+                        <?= "ようこそ " . Utils::h($_SESSION["name"]) . " さん"; ?>
+                        <a class="text_red" href="logout.php">ログアウト</a>
+                    </span>
+                </div>
+            <?php } ?> 
         </div>
     </h1>
 </div>
